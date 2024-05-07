@@ -1,10 +1,10 @@
 .heroName {
     font-family: ccbiffbamboom, sans-serif;
     font-weight: 400;
-    font-style: normal;    
+    font-style: normal;
     color: #dbdbdb;
     text-transform: uppercase;
-    background: -webkit-linear-gradient(#ececec, #0331ff);    
+    background: -webkit-linear-gradient(#ececec, #0331ff);
     -webkit-background-clip: text;
     background-clip: text;
     letter-spacing: 3px;
@@ -15,3 +15,13 @@
 
 }
 
+.heroNames {
+    font-family: ccbiffbamboom, sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    color: darkred;
+    text-transform: uppercase;
+    -webkit-background-clip: text;
+    background-clip: text;
+    letter-spacing: 3px;
+}
