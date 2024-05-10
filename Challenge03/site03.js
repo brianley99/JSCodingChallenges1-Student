@@ -4,7 +4,7 @@ function convertIt() {
     //get the user entered value
     let kmValue = parseFloat(document.getElementById("InputValue").value);
 
-    if (isNaN(kmValue) ) {
+    if (isNaN(kmValue)) {
         alert("Please enter a number");
 
     } else {
@@ -19,5 +19,9 @@ function convertIt() {
 
 //takes an array of strings and returns the longest one. 
 function convertToKm(kmValue) {
-   return 0;
+
+    // Formula to Convert Km to Miles: Km * 0.6214 = Miles
+    let milesValue = kmValue * 0.6214;
+
+    return milesValue;
 }
