@@ -125,8 +125,7 @@ let cityData = [{
 //driver function used for display and passing values.
 function citySort() {
 
-    
-    sortByPopulation(cityData, "desc");
+    let sortedCityData = sortByPopulation(cityData, "desc");
     
     //extra credit functions
     //sortyByName(cityData);
@@ -136,7 +135,7 @@ function citySort() {
     tbody = document.getElementById("results");
     let trow = "";
     //display the data 
-    cityData.forEach(item => {
+    sortedCityData.forEach(item => {
         trow += `<tr><td>${item.city}</td><td>${item.state_code}</td><td>${item.population.toLocaleString("en-US")}</td><td>${item.median_age}</td><td>${item.avg_household_size}</td></tr>`;
     });
     tbody.innerHTML = "";
@@ -146,6 +145,76 @@ function citySort() {
 //takes an array of objects and sorts by population. 
 function sortByPopulation(cityData, sortDir) {
     
+    // Declare array to store sorted data into
+    let sortedCityData = [];
+
+    // Sort Data
+    cityData.forEach(element => {
+        
+        // No data, just add it to the array
+        if (sortedCityData.length == 0) {
+            
+            sortedCityData.push(element);
+
+        // Second element, add it ether bethind or in front
+        } else if (sortedCityData.length == 1) {
+            
+            // Get first city to compare
+            const firstCityComparitor = sortedCityData[0];
+
+            // Compare both populations
+            if (element.population > firstCityComparitor.population) {
+                
+                // New city's population is larger
+                sortedCityData.splice(1, 0, element);
+                
+            } else {
+                
+                // New city's population is smaller
+                sortedCityData.splice(0, 0, element);
+            }
+
+        // Start comparing
+        } else {
+            
+            // Loop over each cityData element in pairs and compare value of population with current element
+            for (let i = 0; i < sortedCityData.length; i++) {
+                
+                let firstCityComparitor = sortedCityData[i];
+                let secondCityComparitor = sortedCityData[i + 1];
+
+                // Last element, add to the end
+                if (secondCityComparitor == null) {
+                    sortedCityData.push(element);
+                    break;
+                }
+                
+                // The element's population is smaller than the first comparitor element, add it behind
+                if (element.population < firstCityComparitor.population) {
+                    
+                    sortedCityData.splice(i, 0, element);
+                    break;
+
+                // The element's population is in the range of both comparitor elements, add it in between
+                } else if (element.population >= firstCityComparitor.population && 
+                           element.population < secondCityComparitor.population) {
+                    
+                    sortedCityData.splice((i + 1), 0, element);
+                    break;
+                
+                } 
+                // If the element's population is over the range of the second compatitor element, move on to the next pair
+            }
+        }
+    });
+
+    // Return sorted data
+    if (sortDir = 'desc') {
+        return sortedCityData.reverse();
+        
+    } else {
+        return sortedCityData; 
+    }
 }
 
 //takes an array of objects and sorts by median age. 
