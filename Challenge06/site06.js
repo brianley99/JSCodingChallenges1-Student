@@ -26,6 +26,31 @@ function findVowels() {
 //takes an string and returns the vowel count and the vowels found as an object.
 function getVowelCount(str) {
     
-    return {};
+    // Initalize voul object
+    let voulsCount = 0;
 
+    // Initialize voul array
+    let voulsFound = [];
+
+    // Normalize text
+    let normalizedStr = str.replace(/[^a-zA-Z]/g, '');
+    normalizedStr.toLowerCase();
+
+    // Initialize the given string as an array
+    let strAsArray = normalizedStr.split('');
+
+    // Loop through each string to see if it is a voul (a, e, i, o, u)
+    strAsArray.forEach(element => {
+        
+        // If it's a voul, increase counter by one
+        if (element == 'a' || element == 'e' || element == 'i' || element == 'o' || element == 'u') {
+            
+            voulsCount += 1;
+            voulsFound.push(element);
+        }
+    });
+
+
+    // Return count
+    return { vCount : voulsCount, vFound : voulsFound};
 }
